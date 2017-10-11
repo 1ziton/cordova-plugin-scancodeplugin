@@ -1,4 +1,4 @@
-package cordova.plugin.ScanCodePlugin;
+﻿package cordova.plugin.ScanCodePlugin;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
@@ -14,6 +14,7 @@ import android.Manifest;
 import android.content.Context;
 import android.hardware.Camera;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
@@ -34,25 +35,39 @@ public class ScanCodePlugin extends CordovaPlugin {
     private CallbackContext callbackContext;
     private static final int REQUEST_QRCODE = 0x01;
     private static final int PERMISSION_DENIED_ERROR=20;
-
+    private static final int CAMERA_PERMISSIONS_REQUEST_CODE=1;
+    private int code=1;
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
         this.callbackContext = callbackContext;
         if (action.equals("scan")) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
-                //高编译版本 23含以上
-                if (ContextCompat.checkSelfPermission(cordova.getActivity(),Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    Toast toast=Toast.makeText(cordova.getActivity(),"请在系统设置中打开照相机权限",Toast.LENGTH_LONG);
-                    showtoast(toast,4000);
+            if(Build.VERSION.SDK_INT >= 24){
+                //android 7.0
+
+                //判断权限
+                if (ContextCompat.checkSelfPermission(this.cordova.getActivity(),Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this.cordova.getActivity(),new String[]{Manifest.permission.CAMERA},CAMERA_PERMISSIONS_REQUEST_CODE);
+                    code--;
+                    if (code<0){
+                        code=1;
+                        Toast toast=Toast.makeText(cordova.getActivity(),"请在系统设置开启相机权限",Toast.LENGTH_LONG);
+                        showtoast(toast,4000);
+                    }
+                }else{
+                    Intent intent = new Intent(cordova.getActivity(), CaptureActivity.class);
+                    cordova.startActivityForResult(this, intent, REQUEST_QRCODE);
                 }
+            }else {
+                Intent intent = new Intent(cordova.getActivity(), CaptureActivity.class);
+                cordova.startActivityForResult(this, intent, REQUEST_QRCODE);
             }
-            Intent intent = new Intent(cordova.getActivity(), CaptureActivity.class);
-            cordova.startActivityForResult(this, intent, REQUEST_QRCODE);
+
             return true;
         }
         return false;
     }
 
+    //设置吐司时长
     public void showtoast(final Toast toast,final int cnt){
         final Timer timer=new Timer();
         timer.schedule(new TimerTask() {
@@ -69,6 +84,23 @@ public class ScanCodePlugin extends CordovaPlugin {
             }
         },cnt);
     }
+
+//    //权限申请回调
+//    @Override
+//    public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) throws JSONException {
+//        super.onRequestPermissionResult(requestCode, permissions, grantResults);
+//        if (requestCode == CAMERA_PERMISSIONS_REQUEST_CODE){
+//            if (grantResults.length>0){
+//                Toast toast=Toast.makeText(cordova.getActivity(),"权限已申请",Toast.LENGTH_LONG);
+//                showtoast(toast,4000);
+//                Intent intent = new Intent(cordova.getActivity(), CaptureActivity.class);
+//                cordova.startActivityForResult(this, intent, REQUEST_QRCODE);
+//            }else {
+//                Toast toast=Toast.makeText(cordova.getActivity(),"请在系统设置中打开照相机权限",Toast.LENGTH_LONG);
+//                showtoast(toast,4000);
+//            }
+//        }
+//    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
