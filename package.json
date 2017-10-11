@@ -5,7 +5,8 @@
   "cordova": {
     "id": "cordova-plugin-scancodeplugin",
     "platforms": [
-      "ios","android"
+      "ios",
+      "android"
     ]
   },
   "repository": {
@@ -16,6 +17,11 @@
     "ecosystem:cordova",
     "cordova-ios"
   ],
-  "author": ["yilei","yangqian","Txiaomo"],
-  "license": "ISC"
+  "author": [
+    "yilei",
+    "yangqian",
+    "Txiaomo"
+  ],
+  "license": "ISC",
+  "dependencies": {}
 }

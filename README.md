@@ -1,5 +1,7 @@
 # scanCodePlugin
 
+[![](https://img.shields.io/npm/v/cordova-plugin-scancodeplugin.svg?style=flat-square)](https://www.npmjs.com/package/cordova-plugin-scancodeplugin)
+
 ionic3 二维码扫描插件,安卓及iOS平台皆可用.
 
 clone from https://github.com/YQianIOS/scanCodePlugin
