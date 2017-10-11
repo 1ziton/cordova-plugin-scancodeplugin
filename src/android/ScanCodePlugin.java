@@ -1,4 +1,4 @@
-﻿package cordova.plugin.ScanCodePlugin;
+package cordova.plugin.ScanCodePlugin;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
