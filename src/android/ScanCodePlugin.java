@@ -85,23 +85,6 @@ public class ScanCodePlugin extends CordovaPlugin {
         },cnt);
     }
 
-//    //权限申请回调
-//    @Override
-//    public void onRequestPermissionResult(int requestCode, String[] permissions, int[] grantResults) throws JSONException {
-//        super.onRequestPermissionResult(requestCode, permissions, grantResults);
-//        if (requestCode == CAMERA_PERMISSIONS_REQUEST_CODE){
-//            if (grantResults.length>0){
-//                Toast toast=Toast.makeText(cordova.getActivity(),"权限已申请",Toast.LENGTH_LONG);
-//                showtoast(toast,4000);
-//                Intent intent = new Intent(cordova.getActivity(), CaptureActivity.class);
-//                cordova.startActivityForResult(this, intent, REQUEST_QRCODE);
-//            }else {
-//                Toast toast=Toast.makeText(cordova.getActivity(),"请在系统设置中打开照相机权限",Toast.LENGTH_LONG);
-//                showtoast(toast,4000);
-//            }
-//        }
-//    }
-
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case REQUEST_QRCODE:

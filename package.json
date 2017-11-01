@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-scancodeplugin",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "qrscan plugin for ionic",
   "cordova": {
     "id": "cordova-plugin-scancodeplugin",
@@ -16,11 +16,6 @@
   "keywords": [
     "ecosystem:cordova",
     "cordova-ios"
-  ],
-  "author": [
-    "yilei",
-    "yangqian",
-    "Txiaomo"
   ],
   "license": "ISC",
   "dependencies": {}
