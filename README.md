@@ -1,6 +1,6 @@
 # scanCodePlugin
 
-[![](https://img.shields.io/npm/v/cordova-plugin-scancodeplugin.svg?style=flat-square)](https://www.npmjs.com/package/cordova-plugin-scancodeplugin)
+[![](https://img.shields.io/npm/v/cordova-plugin-scancodeplugin.svg?style=flat-square)](https://www.npmjs.com/package/cordova-plugin-scancodeplugin) [![Greenkeeper badge](https://badges.greenkeeper.io/1ziton/cordova-plugin-scancodeplugin.svg)](https://greenkeeper.io/)
 
 ionic3 二维码扫描插件,安卓及iOS平台皆可用.
 
